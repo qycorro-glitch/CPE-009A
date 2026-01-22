@@ -1,0 +1,219 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/qycorro-glitch/CPE-009A/blob/main/2.1%20ntf\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "ryozgA_4xKce"
+      },
+      "outputs": [],
+      "source": [
+        "# We want to create a python code for a grading scheme\n",
+        "\n",
+        "# Create a function to accept a number of activities\n",
+        "# Compute for the score vs total\n",
+        "# Return the average grade of the student in %\n",
+        "def termCrit(actNumber):\n",
+        "  rawScore = []\n",
+        "  totalScore = []\n",
+        "\n",
+        "  for i in range(actNumber):\n",
+        "      while True:\n",
+        "         inputScore = float(input(\"Score: \"))\n",
+        "         inputTotal = float(input(\"Total: \"))\n",
+        "\n",
+        "         if inputScore > inputTotal:\n",
+        "            print(\"\\nInvalid Scores.\")\n",
+        "         elif inputScore < 0 or inputTotal <= 0:\n",
+        "            print(\"\\nInvalid Input\")\n",
+        "         else:\n",
+        "            rawScore.append(inputScore)\n",
+        "            totalScore.append(inputTotal)\n",
+        "            break\n",
+        "\n",
+        "  grade = sum(rawScore) / sum(totalScore)\n",
+        "  grade = grade * 100\n",
+        "  return grade"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Create a function for the class standing per term\n",
+        "def termCS():\n",
+        "  print(\"Hands-on Activities: \")\n",
+        "  hoa = termCrit(int(input(\"How many hands-on activities this term?\")))\n",
+        "  termHOA = termCrit(hoa)\n",
+        "\n",
+        "  print(\"\\nQuizzes:\")\n",
+        "  quiz = termCrit(int(input(\"How many quizzes this term?\")))\n",
+        "  termQuiz = termCrit(quiz)\n",
+        "  print(\"\\nAssignment: \")\n",
+        "  ass = termCrit(int(input(\"How many assignments?\")))\n",
+        "  termAss = termCrit(ass)\n",
+        "  grade = (0.5 * termHOA) + (0.3 * termQuiz) + (0.2 * termAss)\n",
+        "  return grade"
+      ],
+      "metadata": {
+        "id": "ZcVADvvny-o2"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Create a function to compute the term grade\n",
+        "def termGrade():\n",
+        "  print(\"Computing for the term grade.\")\n",
+        "  examRaw = float(input(\"Exam Score: \"))\n",
+        "  examTotal = float(input(\"Exam Total: \"))\n",
+        "  examGrade = (examRaw/examTotal) * 100\n",
+        "\n",
+        "  CSgrade = termCS()\n",
+        "\n",
+        "  grade = (0.5 * examGrade) + (0.5 * CSgrade)\n",
+        "  return grade"
+      ],
+      "metadata": {
+        "id": "XiYVQiTcz0g2"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Create a function to compute for the grades in the semester\n",
+        "def semesterGrade():\n",
+        "  print(\"Prelim Grade\")\n",
+        "  prelimGrade = termGrade()\n",
+        "\n",
+        "  print(\"Midterm Grade\")\n",
+        "  midtermGrade = termGrade()\n",
+        "  finalMG = (1/3)*prelimGrade + (2/3)*midtermGrade\n",
+        "\n",
+        "  print(\"Final Grade\")\n",
+        "  finalGrade = termGrade()\n",
+        "  finalFG = (1/3)*finalMG + (2/3)*finalGrade\n",
+        "\n",
+        "  return finalFG"
+      ],
+      "metadata": {
+        "id": "nhspKha30jD9"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def convertGrade(finalGrade):\n",
+        "  if finalGrade >= 94.0: return 1.0\n",
+        "  #The class should add everything else\n",
+        "  elif finalGrade >= 90.0: return 1.25\n",
+        "  elif finalGrade >= 87.0: return 1.5\n",
+        "  elif finalGrade >= 84.0: return 1.75\n",
+        "  elif finalGrade >= 80.0: return 2.0\n",
+        "  elif finalGrade >= 77.0: return 2.25\n",
+        "  elif finalGrade >= 74.0: return 2.5\n",
+        "  elif finalGrade >= 71.0: return 2.75\n",
+        "  elif finalGrade >= 68.0: return 3.0\n",
+        "  elif finalGrade >= 65.0: return 3.25\n",
+        "  elif finalGrade >= 62.0: return 3.5\n",
+        "  elif finalGrade >= 59.0: return 3.75\n",
+        "  elif finalGrade >="
+      ],
+      "metadata": {
+        "id": "QRgkpjtJ1K6l"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "3# Driver Code\n",
+        "\n",
+        "# Trial 1\n",
+        "print(convertGrade(semesterGrade()))\n",
+        "\n",
+        "# Trial 2\n",
+        "print(convertGrade(semesterGrade()))\n",
+        "\n",
+        "# Trial 3\n",
+        "print(convertGrade(semesterGrade()))\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 391
+        },
+        "id": "aMkI43re1WEW",
+        "outputId": "d195e28f-5a18-45f3-eb23-722f19e23411"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Prelim Grade\n",
+            "Computing for the term grade.\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "KeyboardInterrupt",
+          "evalue": "Interrupted by user",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m                         Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipython-input-285570453.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0;31m# Trial 1\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 4\u001b[0;31m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mconvertGrade\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0msemesterGrade\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      5\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      6\u001b[0m \u001b[0;31m# Trial 2\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/tmp/ipython-input-1162979833.py\u001b[0m in \u001b[0;36msemesterGrade\u001b[0;34m()\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;32mdef\u001b[0m \u001b[0msemesterGrade\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m   \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Prelim Grade\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 4\u001b[0;31m   \u001b[0mprelimGrade\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mtermGrade\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      5\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      6\u001b[0m   \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Midterm Grade\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/tmp/ipython-input-1847335592.py\u001b[0m in \u001b[0;36mtermGrade\u001b[0;34m()\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;32mdef\u001b[0m \u001b[0mtermGrade\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m   \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Computing for the term grade.\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 4\u001b[0;31m   \u001b[0mexamRaw\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mfloat\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0minput\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Exam Score: \"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      5\u001b[0m   \u001b[0mexamTotal\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mfloat\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0minput\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Exam Total: \"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      6\u001b[0m   \u001b[0mexamGrade\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m(\u001b[0m\u001b[0mexamRaw\u001b[0m\u001b[0;34m/\u001b[0m\u001b[0mexamTotal\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m*\u001b[0m \u001b[0;36m100\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36mraw_input\u001b[0;34m(self, prompt)\u001b[0m\n\u001b[1;32m   1175\u001b[0m                 \u001b[0;34m\"raw_input was called, but this frontend does not support input requests.\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1176\u001b[0m             )\n\u001b[0;32m-> 1177\u001b[0;31m         return self._input_request(\n\u001b[0m\u001b[1;32m   1178\u001b[0m             \u001b[0mstr\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mprompt\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1179\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_parent_ident\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"shell\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36m_input_request\u001b[0;34m(self, prompt, ident, parent, password)\u001b[0m\n\u001b[1;32m   1217\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1218\u001b[0m                 \u001b[0;31m# re-raise KeyboardInterrupt, to truncate traceback\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1219\u001b[0;31m                 \u001b[0;32mraise\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Interrupted by user\"\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1220\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mException\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1221\u001b[0m                 \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mlog\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mwarning\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Invalid Message:\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mexc_info\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mTrue\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m: Interrupted by user"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**What is the difference from the code you created?**\n",
+        "\n",
+        "<Answer here>"
+      ],
+      "metadata": {
+        "id": "EMutKg_51z2m"
+      }
+    }
+  ]
+}
