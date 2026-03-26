@@ -1,0 +1,2 @@
+Equation: 1x^2 + -3x + 2 = 0
+Result: Two real roots: 2.0, 1.0
